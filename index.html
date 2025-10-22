@@ -14,7 +14,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Title and Meta Description -->
     <title>Sahyog Billing - Free & Simple Billing for Medical Shops</title>
     <meta name="description" content="A free, simple, and easy-to-use billing data entry page for medical shops and pharmacies. Save bill data directly to a Google Sheet. No installation required.">
     <meta name="keywords" content="free billing software, medical shop billing, pharmacy data entry, sahyog medical, simple billing tool, google sheets billing">
@@ -30,9 +29,39 @@
             --indigo-500: #6366f1; --indigo-600: #4f46e5; --blue-600: #2563eb; --blue-700: #1d4ed8; --red-500: #ef4444; --green-500: #22c55e;
             --white: #ffffff; --black: #000000;
         }
+        html { line-height: 1.5; -webkit-text-size-adjust: 100%; font-family: 'Inter', sans-serif; }
+        body { margin: 0; background-color: #f3f4f6; color: #1f2937; }
+        .hidden { display: none; }
+        #password-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(31, 41, 55, 0.9); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 100; padding: 1rem;
+        }
+        #password-box {
+            background-color: white; padding: 2rem; border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 24rem;
+        }
+        .login-input {
+            width: 100%; padding: 0.75rem; border: 1px solid #d1d5db;
+            border-radius: 0.375rem; margin-bottom: 1rem;
+        }
+        #password-submit {
+            width: 100%; padding: 0.75rem; background-color: #14b8a6; color: white;
+            border: none; border-radius: 0.375rem; font-weight: 600; cursor: pointer;
+        }
+        #password-error {
+            color: #ef4444; margin-top: 0.5rem; font-size: 0.875rem;
+        }
+        .footer-login {
+            position: absolute;
+            bottom: 2rem;
+            color: white;
+            text-align: center;
+        }
+        .footer-login a {
+            color: var(--teal-500);
+            text-decoration: none;
+        }
         *, ::before, ::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #e5e7eb; }
-        html { line-height: 1.5; -webkit-text-size-adjust: 100%; -moz-tab-size: 4; tab-size: 4; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        body { margin: 0; line-height: inherit; font-family: 'Inter', sans-serif; background-color: var(--gray-100); color: var(--gray-800); }
         .container { width: 100%; margin-right: auto; margin-left: auto; padding-right: 1rem; padding-left: 1rem; }
         @media (min-width: 768px) { .container { max-width: 768px; padding-right: 2rem; padding-left: 2rem;} }
         @media (min-width: 1024px) { .container { max-width: 1024px; } }
@@ -57,7 +86,7 @@
         .w-full { width: 100%; }
         @media (min-width: 640px) { .sm\:w-auto { width: auto; } }
         input, button { font-family: inherit; font-size: 100%; margin: 0; padding: 0; line-height: inherit; color: inherit; }
-        input[type="text"], input[type="tel"], input[type="date"], input[type="number"] { padding: 0.5rem; border-width: 1px; border-radius: 0.375rem; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); }
+        input[type="text"], input[type="tel"], input[type="date"], input[type="number"], input[type="password"] { padding: 0.5rem; border-width: 1px; border-radius: 0.375rem; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); }
         input[type="radio"] { height: 1rem; width: 1rem; }
         .focus\:ring-teal-500:focus { --tw-ring-color: var(--teal-500); } .focus\:border-teal-500:focus { border-color: var(--teal-500); }
         .transition { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
@@ -66,7 +95,8 @@
         .flex { display: flex; } .flex-col { flex-direction: column; }
         @media (min-width: 640px) { .sm\:flex-row { flex-direction: row; } }
         .items-center { align-items: center; } .justify-end { justify-content: flex-end; } .justify-between { justify-content: space-between; } .justify-center { justify-content: center; }
-        .flex-wrap { flex-wrap: wrap; } .pt-6 { padding-top: 1.5rem; } .fixed { position: fixed; } .inset-0 { top: 0; right: 0; bottom: 0; left: 0; } .z-50 { z-index: 50; } .hidden { display: none; } .transform { transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1); } .scale-95 { transform: scale(0.95); }
+        .flex-wrap { flex-wrap: wrap; } .pt-6 { padding-top: 1.5rem; } .fixed { position: fixed; } .inset-0 { top: 0; right: 0; bottom: 0; left: 0; } .z-50 { z-index: 50; }
+        .transform { transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1); } .scale-95 { transform: scale(0.95); }
         .text-xl { font-size: 1.25rem; line-height: 1.75rem; } .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
         .hover\:text-gray-800:hover { color: var(--gray-800); } .min-h-\[256px\] { min-height: 256px; } .bottom-5 { bottom: 1.25rem; } .right-5 { right: 1.25rem; } .translate-y-20 { transform: translateY(5rem); } .opacity-0 { opacity: 0; }
         .text-red-500 { color: var(--red-500); } .hover\:text-red-700:hover { color: #b91c1c; } .relative { position: relative; } .bg-transparent { background-color: transparent; } .border-b-2 { border-bottom-width: 2px; } .focus\:outline-none:focus { outline: 2px solid transparent; outline-offset: 2px; }
@@ -78,120 +108,171 @@
         @media (min-width: 768px) { .md\:col-span-2 { grid-column: span 2 / span 2; } }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body>
 
-    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
-        <header class="bg-white rounded-lg shadow-md p-6 mb-8 text-center">
-            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-teal-600">Free Medical Shop Billing Tool</h1>
-            <p class="text-gray-500 mt-1">Powered by Sahyog Medical</p>
-        </header>
+    <div id="password-overlay">
+        <div id="password-box">
+            <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Login to Access Billing</h2>
+            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1.5rem;">This is a private billing tool.</p>
+            <input type="text" id="username-input" class="login-input" placeholder="Enter Username">
+            <input type="password" id="password-input" class="login-input" placeholder="Enter Password">
+            <button id="password-submit">Login</button>
+            <p id="password-error" class="hidden">Wrong Username or Password.</p>
+        </div>
+        <footer class="footer-login">
+            <p>Contact us at: <a href="mailto:your-email@example.com">sahyogvedang@zohomail.in</a></p>
+        </footer>
+    </div>
 
-        <main class="bg-white rounded-lg shadow-md p-4 sm:p-6 md:p-8">
-            <h2 class="text-xl font-bold text-gray-800 mb-6">Enter New Bill Details</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div>
-                    <label for="customerName" class="block text-sm font-medium text-gray-600 mb-1">Customer Name</label>
-                    <input type="text" id="customerName" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2 focus:ring-teal-500 focus:border-teal-500 transition" placeholder="Walk-in Customer">
-                </div>
-                <div>
-                    <label for="phoneNumber" class="block text-sm font-medium text-gray-600 mb-1">Phone Number</label>
-                    <input type="tel" id="phoneNumber" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2 focus:ring-teal-500 focus:border-teal-500 transition" placeholder="e.g., 9876543210">
-                </div>
-                <div>
-                    <label for="doctorName" class="block text-sm font-medium text-gray-600 mb-1">Doctor's Name</label>
-                    <input type="text" id="doctorName" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2 focus:ring-teal-500 focus:border-teal-500 transition" placeholder="Self">
-                </div>
-                <div>
-                    <label for="billDate" class="block text-sm font-medium text-gray-600 mb-1">Date</label>
-                    <input type="date" id="billDate" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2 focus:ring-teal-500 focus:border-teal-500 transition">
-                </div>
-                <div class="md:col-span-2">
-                    <label for="customerAddress" class="block text-sm font-medium text-gray-600 mb-1">Customer Address</label>
-                    <input type="text" id="customerAddress" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2 focus:ring-teal-500 focus:border-teal-500 transition" placeholder="City/Town">
-                </div>
-                <div class="md:col-span-2">
-                    <label for="doctorsPrescriptionFile" class="block text-sm font-medium text-gray-600 mb-1">Doctor's Prescription</label>
-                    <input type="file" id="doctorsPrescriptionFile" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100">
-                </div>
-                <div class="md:col-span-2">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Bill Type</label>
-                    <div class="flex items-center gap-6">
-                        <div class="flex items-center">
-                            <input id="rx" name="billType" type="radio" value="Rx" checked class="h-4 w-4 border-gray-300 text-teal-600 focus:ring-teal-500">
-                            <label for="rx" class="ml-2 block text-sm text-gray-900">Rx (Normal)</label>
-                        </div>
-                        <div class="flex items-center">
-                            <input id="nrx" name="billType" type="radio" value="NRx" class="h-4 w-4 border-gray-300 text-teal-600 focus:ring-teal-500">
-                            <label for="nrx" class="ml-2 block text-sm text-gray-900">NRx (Special - Colored)</label>
+    <div id="main-content" class="hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+            <header class="bg-white rounded-lg shadow-md p-6 mb-8 text-center">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-teal-600">Free Medical Shop Billing Tool</h1>
+                <p class="text-gray-500 mt-1">Powered by Sahyog Medical</p>
+            </header>
+
+            <main class="bg-white rounded-lg shadow-md p-4 sm:p-6 md:p-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-6">Enter New Bill Details</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label for="customerName" class="block text-sm font-medium text-gray-600 mb-1">Customer Name</label>
+                        <input type="text" id="customerName" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2" placeholder="Walk-in Customer">
+                    </div>
+                    <div>
+                        <label for="phoneNumber" class="block text-sm font-medium text-gray-600 mb-1">Phone Number</label>
+                        <input type="tel" id="phoneNumber" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2" placeholder="e.g., 9876543210">
+                    </div>
+                    <div>
+                        <label for="doctorName" class="block text-sm font-medium text-gray-600 mb-1">Doctor's Name</label>
+                        <input type="text" id="doctorName" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2" placeholder="Self">
+                    </div>
+                    <div>
+                        <label for="billDate" class="block text-sm font-medium text-gray-600 mb-1">Date</label>
+                        <input type="date" id="billDate" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="customerAddress" class="block text-sm font-medium text-gray-600 mb-1">Customer Address</label>
+                        <input type="text" id="customerAddress" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2" placeholder="City/Town">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="doctorsPrescriptionFile" class="block text-sm font-medium text-gray-600 mb-1">Doctor's Prescription</label>
+                        <input type="file" id="doctorsPrescriptionFile" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Bill Type</label>
+                        <div class="flex items-center gap-6">
+                            <div class="flex items-center">
+                                <input id="rx" name="billType" type="radio" value="Rx" checked class="h-4 w-4 border-gray-300 text-teal-600 focus:ring-teal-500">
+                                <label for="rx" class="ml-2 block text-sm text-gray-900">Rx (Normal)</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="nrx" name="billType" type="radio" value="NRx" class="h-4 w-4 border-gray-300 text-teal-600 focus:ring-teal-500">
+                                <label for="nrx" class="ml-2 block text-sm text-gray-900">NRx (Special - Colored)</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="mb-8 overflow-x-auto">
-                <table class="w-full text-sm text-left">
-                    <thead class="bg-gray-200 text-gray-600 uppercase">
-                        <tr>
-                            <th class="px-2 py-3 sm:p-3">Medicine Name</th>
-                            <th class="px-2 py-3 sm:p-3">Batch No.</th>
-                            <th class="px-2 py-3 sm:p-3">Qty</th>
-                            <th class="px-2 py-3 sm:p-3">Photo</th>
-                            <th class="px-2 py-3 sm:p-3 text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="items-table-body"></tbody>
-                </table>
-            </div>
+                <div class="mb-8 overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="bg-gray-200 text-gray-600 uppercase">
+                            <tr>
+                                <th class="px-2 py-3 sm:p-3">Medicine Name</th>
+                                <th class="px-2 py-3 sm:p-3">Batch No.</th>
+                                <th class="px-2 py-3 sm:p-3">Qty</th>
+                                <th class="px-2 py-3 sm:p-3">Photo</th>
+                                <th class="px-2 py-3 sm:p-3 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="items-table-body"></tbody>
+                    </table>
+                </div>
 
-            <div class="flex flex-col sm:flex-row sm:justify-between items-center mb-8 gap-4">
-                <button id="add-item-btn" class="w-full sm:w-auto bg-teal-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-teal-600 transition shadow-sm flex items-center justify-center">
-                    <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg> Add Item
-                </button>
-                <button id="generate-qr-btn" class="w-full sm:w-auto bg-indigo-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-600 transition shadow-sm flex items-center justify-center">
-                    <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M1.5 1.5A1.5 1.5 0 0 0 0 3v10a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V3a1.5 1.5 0 0 0-1.5-1.5h-13zM2 6h12v7H2V6zm1-4h2v2H3V2zm4 0h2v2H7V2zM2 2h2v2H2V2zm5 0h2v2H7V2zM3 3h1v1H3V3zm5 0h1v1H8V3z"/></svg> Generate Payment QR
-                </button>
-            </div>
+                <div class="flex flex-col sm:flex-row sm:justify-between items-center mb-8 gap-4">
+                    <button id="add-item-btn" class="w-full sm:w-auto bg-teal-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-teal-600 transition shadow-sm flex items-center justify-center">
+                        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg> Add Item
+                    </button>
+                    <button id="generate-qr-btn" class="w-full sm:w-auto bg-indigo-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-600 transition shadow-sm flex items-center justify-center">
+                        <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M1.5 1.5A1.5 1.5 0 0 0 0 3v10a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V3a1.5 1.5 0 0 0-1.5-1.5h-13zM2 6h12v7H2V6zm1-4h2v2H3V2zm4 0h2v2H7V2zM2 2h2v2H2V2zm5 0h2v2H7V2zM3 3h1v1H3V3zm5 0h1v1H8V3z"/></svg> Generate Payment QR
+                    </button>
+                </div>
 
-            <div class="flex flex-col sm:flex-row sm:justify-end gap-4 mt-8 border-t pt-6">
-                <button id="clear-form-btn" class="w-full sm:w-auto bg-gray-500 text-white font-semibold py-2 px-6 rounded-md hover:bg-gray-600 transition shadow-sm">Clear</button>
-                <button id="save-bill-btn" class="w-full sm:w-auto bg-blue-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-700 transition shadow-sm">Save Data</button>
-            </div>
-        </main>
-    </div>
-
-    <!-- Modals -->
-    <div id="dataModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
-        <div class="modal-content bg-white rounded-lg shadow-xl w-full max-w-md transform scale-95 text-center p-6">
-            <svg class="mx-auto text-green-500 w-12 h-12 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Success!</h3>
-            <p class="text-gray-600 mb-6">Data sent to Google Sheet.</p>
-            <button id="okModalBtn" class="bg-teal-500 text-white font-semibold py-2 px-6 rounded-md hover:bg-teal-600 transition shadow-sm">OK</button>
+                <div class="flex flex-col sm:flex-row sm:justify-end gap-4 mt-8 border-t pt-6">
+                    <button id="clear-form-btn" class="w-full sm:w-auto bg-gray-500 text-white font-semibold py-2 px-6 rounded-md hover:bg-gray-600 transition shadow-sm">Clear</button>
+                    <button id="save-bill-btn" class="w-full sm:w-auto bg-blue-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-700 transition shadow-sm">Save Data</button>
+                </div>
+            </main>
         </div>
-    </div>
-    
-    <div id="qrModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
-        <div class="modal-content bg-white rounded-lg shadow-xl w-full max-w-sm transform scale-95 p-6">
-            <div class="flex justify-between items-center mb-4">
-                 <h3 class="text-lg font-semibold text-gray-800">Generate UPI QR Code</h3>
-                 <button id="closeQrModalBtn" class="text-gray-500 hover:text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button>
+        
+        <footer class="text-center p-6 mt-8 text-gray-500 text-sm">
+            <p>Conceptualized by Sahyog Medical.</p>
+        </footer>
+
+        <!-- Modals -->
+        <div id="dataModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden">
+            <div class="modal-content bg-white rounded-lg shadow-xl w-full max-w-md transform scale-95 text-center p-6">
+                <svg class="mx-auto text-green-500 w-12 h-12 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Success!</h3>
+                <p class="text-gray-600 mb-6">Data sent to Google Sheet.</p>
+                <button id="okModalBtn" class="bg-teal-500 text-white font-semibold py-2 px-6 rounded-md hover:bg-teal-600 transition shadow-sm">OK</button>
             </div>
-            <div>
-                <label for="amountInput" class="block text-sm font-medium text-gray-600 mb-1">Enter Amount (₹)</label>
-                <input type="number" id="amountInput" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2 mb-4" placeholder="e.g., 500">
-                <button id="createQrBtn" class="w-full bg-teal-500 text-white font-semibold py-2 rounded-md hover:bg-teal-600 transition shadow-sm mb-4">Generate QR</button>
-                <div id="qrcode" class="flex justify-center items-center bg-gray-100 p-4 rounded-md min-h-[256px]">
-                    <p class="text-gray-500">QR code will appear here</p>
+        </div>
+        
+        <div id="qrModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden">
+            <div class="modal-content bg-white rounded-lg shadow-xl w-full max-w-sm transform scale-95 p-6">
+                <div class="flex justify-between items-center mb-4">
+                     <h3 class="text-lg font-semibold text-gray-800">Generate UPI QR Code</h3>
+                     <button id="closeQrModalBtn" class="text-gray-500 hover:text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></button>
+                </div>
+                <div>
+                    <label for="amountInput" class="block text-sm font-medium text-gray-600 mb-1">Enter Amount (₹)</label>
+                    <input type="number" id="amountInput" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2 mb-4" placeholder="e.g., 500">
+                    <button id="createQrBtn" class="w-full bg-teal-500 text-white font-semibold py-2 rounded-md hover:bg-teal-600 transition shadow-sm mb-4">Generate QR</button>
+                    <div id="qrcode" class="flex justify-center items-center bg-gray-100 p-4 rounded-md min-h-[256px]">
+                        <p class="text-gray-500">QR code will appear here</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="text-center text-xs text-gray-400 mt-8">
+            <p>&copy; 2025 Vedang Soni. All rights reserved.</p>
+        </div>
 
-    <div id="toast" class="fixed bottom-5 right-5 bg-red-500 text-white py-3 px-6 rounded-lg shadow-lg transform translate-y-20 opacity-0">
-        <p id="toastMessage"></p>
+        <div id="toast" class="fixed bottom-5 right-5 bg-red-500 text-white py-3 px-6 rounded-lg shadow-lg transform translate-y-20 opacity-0">
+            <p id="toastMessage"></p>
+        </div>
     </div>
     
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script>
+        // ====================================================================================
+        // ===> ZAROORI: Apna Username aur Password Yahan Set Karein!
+        // ====================================================================================
+        const MY_USERNAME = "sahyogstore";
+        const MY_PASSWORD = "storesahyog@123";
+
+        // Login Logic
+        const passwordOverlay = document.getElementById('password-overlay');
+        const mainContent = document.getElementById('main-content');
+        const usernameInput = document.getElementById('username-input');
+        const passwordInput = document.getElementById('password-input');
+        const passwordSubmit = document.getElementById('password-submit');
+        const passwordError = document.getElementById('password-error');
+
+        function checkLogin() {
+            if (usernameInput.value === MY_USERNAME && passwordInput.value === MY_PASSWORD) {
+                passwordOverlay.style.display = 'none'; // Use direct style for reliability
+                mainContent.classList.remove('hidden');
+            } else {
+                passwordError.classList.remove('hidden');
+            }
+        }
+
+        passwordSubmit.addEventListener('click', checkLogin);
+        passwordInput.addEventListener('keyup', (event) => { if (event.key === "Enter") checkLogin(); });
+        usernameInput.addEventListener('keyup', (event) => { if (event.key === "Enter") passwordInput.focus(); });
+
+        // App Constants
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzUPAGg3CCWlNW0qFS_mHOcTshodzODJ225OHXRmO2tNupkIAkBdpZUi_Y2EG9VrWu3qw/exec';
         const UPI_ID = "mab.037325040420024@axisbank";
         const medicineList = [ "Crocin Advance", "Calpol 500mg", "Dolo 650mg", "Paracetamol 500mg", "Combiflam", "Sumo Tablet", "ORS Powder", "Electral Powder", "Digene Tablet", "Gelusil MPS", "Omez 20mg", "Pantop DSR", "Allegra 120mg", "Cetirizine 10mg", "Avil 25mg", "Benadryl Syrup", "Vicks Action 500", "Band-Aid", "Dettol", "Savlon", "Betadine Ointment", "Soframycin Skin Cream", "Moov Spray", "Volini Gel" ];
@@ -213,26 +294,23 @@
         const toast = document.getElementById('toast');
         const toastMessage = document.getElementById('toastMessage');
 
+        // Initial Setup
         document.addEventListener('DOMContentLoaded', () => {
             billDateInput.value = new Date().toISOString().split('T')[0];
             addNewItemRow();
         });
 
-        // All event listeners are here
+        // Event Listeners
         addItemBtn.addEventListener('click', addNewItemRow);
         clearFormBtn.addEventListener('click', () => clearForm(true));
         saveBillBtn.addEventListener('click', saveData);
         itemsTableBody.addEventListener('keyup', (e) => {
-             if (e.target.classList.contains('medicine-input')) {
-                showAutocomplete(e.target);
-            }
+             if (e.target.classList.contains('medicine-input')) showAutocomplete(e.target);
         });
         itemsTableBody.addEventListener('click', (e) => {
             const removeItemBtn = e.target.closest('.remove-item-btn');
-            if (removeItemBtn) {
-                if (itemsTableBody.querySelectorAll('tr').length > 1) {
-                    removeItemBtn.closest('tr').remove();
-                }
+            if (removeItemBtn && itemsTableBody.querySelectorAll('tr').length > 1) {
+                removeItemBtn.closest('tr').remove();
             }
         });
         document.addEventListener('click', (e) => {
@@ -262,7 +340,7 @@
              }
         });
 
-        // All functions are here
+        // App Functions
         async function saveData() {
             saveBillBtn.disabled = true;
             saveBillBtn.textContent = 'Saving...';
@@ -303,25 +381,17 @@
                 }
                 if (billData.items.length === 0) throw new Error("Please add at least one medicine to save.");
                 
-                const response = await fetch(SCRIPT_URL, { 
-                    method: 'POST', 
-                    body: JSON.stringify(billData),
-                });
+                const response = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(billData) });
                 
                 const resultText = await response.text();
                 try {
                   const result = JSON.parse(resultText);
-                  if (result.status === 'success') {
-                    toggleModal(dataModal, true);
-                  } else {
-                    throw new Error(result.message || 'Unknown error from script.');
-                  }
+                  if (result.status === 'success') toggleModal(dataModal, true);
+                  else throw new Error(result.message || 'Unknown error from script.');
                 } catch(e) {
-                  // This catches cases where the script redirects, which is a sign of success, but returns an HTML page
                   console.log("Response was not JSON, assuming success due to redirect.");
                   toggleModal(dataModal, true);
                 }
-
             } catch (error) {
                 console.error("Error sending data:", error);
                 showToast(`Failed to save: ${error.message}`);
@@ -418,5 +488,4 @@
     </script>
 </body>
 </html>
-
 
