@@ -11,26 +11,27 @@
   gtag('config', 'G-BXDJRCCN7J');
 </script>
     <meta name="google-site-verification" content="j8_ysfmMnR8YafvG80h16qVmmt8PCXAGNKQECzENpvI" />
-   <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Sahyog Billing - Login</title>
-    <meta name="description" content="Login page for Sahyog Medical billing applications (Retail and Surgical).">
-    
+    <title>Sahyog Billing - Free & Simple Billing for Medical Shops</title>
+    <meta name="description" content="A free, simple, and easy-to-use billing data entry page for medical shops and pharmacies. Save bill data directly to a Google Sheet. No installation required.">
+    <meta name="keywords" content="free billing software, medical shop billing, pharmacy data entry, sahyog medical, simple billing tool, google sheets billing">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Inlined CSS */
+        /* Inlined CSS for Offline and Faster Loading */
         :root {
             --teal-50: #f0fdfa; --teal-100: #ccfbf1; --teal-500: #14b8a6; --teal-600: #0d9488; --teal-700: #0f766e;
             --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-500: #6b7280; --gray-600: #4b5563; --gray-800: #1f2937;
             --indigo-500: #6366f1; --indigo-600: #4f46e5; --blue-600: #2563eb; --blue-700: #1d4ed8; --red-500: #ef4444; --green-500: #22c55e;
             --white: #ffffff; --black: #000000;
         }
-        html { line-height: 1.5; font-family: 'Inter', sans-serif; }
+        html { line-height: 1.5; -webkit-text-size-adjust: 100%; font-family: 'Inter', sans-serif; }
         body { margin: 0; background-color: #f3f4f6; color: #1f2937; }
-        .hidden { display: none !important; } /* Use !important to override potential conflicts */
+        .hidden { display: none; } /* Use simple hidden class */
         #password-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(31, 41, 55, 0.9); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 100; padding: 1rem;
@@ -50,13 +51,16 @@
         #password-error {
             color: #ef4444; margin-top: 0.5rem; font-size: 0.875rem;
         }
-        .login-type-label { display: block; text-align: left; font-size: 0.875rem; font-weight: 500; color: #4b5563; margin-bottom: 0.5rem; }
-        .login-type-options { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
-        .login-type-options label { font-size: 0.875rem; }
         .footer-login {
-            position: absolute; bottom: 2rem; color: white; text-align: center; font-size: 0.875rem;
+            position: absolute;
+            bottom: 2rem;
+            color: white;
+            text-align: center; font-size: 0.875rem;
         }
-        .footer-login a { color: var(--teal-500); text-decoration: none; }
+        .footer-login a {
+            color: var(--teal-500);
+            text-decoration: none;
+        }
         *, ::before, ::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #e5e7eb; }
         .container { width: 100%; margin-right: auto; margin-left: auto; padding-right: 1rem; padding-left: 1rem; }
         @media (min-width: 768px) { .container { max-width: 768px; padding-right: 2rem; padding-left: 2rem;} }
@@ -107,19 +111,8 @@
 
     <div id="password-overlay">
         <div id="password-box">
-            <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Login to Access Billing</h2>
-            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1rem;">Select your login type:</p>
-            <!-- Login Type Selection -->
-            <div class="login-type-options">
-                <div class="flex items-center">
-                    <input id="loginStore" name="loginType" type="radio" value="store" checked class="h-4 w-4 border-gray-300 text-teal-600 focus:ring-teal-500">
-                    <label for="loginStore" class="ml-2 block text-sm text-gray-900">Retail Store</label>
-                </div>
-                <div class="flex items-center">
-                    <input id="loginSurgical" name="loginType" type="radio" value="surgical" class="h-4 w-4 border-gray-300 text-teal-600 focus:ring-teal-500">
-                    <label for="loginSurgical" class="ml-2 block text-sm text-gray-900">Surgical/Wholesale</label>
-                </div>
-            </div>
+            <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Login to Retail Billing</h2>
+            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1.5rem;">Enter your Store credentials.</p>
             <input type="text" id="username-input" class="login-input" placeholder="Enter Username">
             <input type="password" id="password-input" class="login-input" placeholder="Enter Password">
             <button id="password-submit">Login</button>
@@ -131,8 +124,7 @@
         </footer>
     </div>
 
-    <!-- Retail Store Content (Initially hidden) -->
-    <div id="main-content-store" class="hidden">
+    <div id="main-content" class="hidden"> <!-- ID changed back -->
         <div class="container mx-auto p-4 md:p-8 max-w-5xl">
             <header class="bg-white rounded-lg shadow-md p-6 mb-8 text-center">
                 <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-teal-600">Retail Store Billing Tool</h1>
@@ -252,45 +244,26 @@
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script>
         // ====================================================================================
-        // ===> ZAROORI: Dono ke liye Username aur Password Yahan Set Karein!
+        // ===> ZAROORI: Retail Store ka Username aur Password Yahan Set Karein!
         // ====================================================================================
         const STORE_USERNAME = "sahyog";
         const STORE_PASSWORD = "sahyog123";
-        const SURGICAL_USERNAME = "surgical"; // Naya username
-        const SURGICAL_PASSWORD = "surgical123"; // Naya password
 
         // Login Logic
         const passwordOverlay = document.getElementById('password-overlay');
-        const mainContentStore = document.getElementById('main-content-store');
+        const mainContent = document.getElementById('main-content'); // Changed ID back
         const usernameInput = document.getElementById('username-input');
         const passwordInput = document.getElementById('password-input');
         const passwordSubmit = document.getElementById('password-submit');
         const passwordError = document.getElementById('password-error');
 
         function checkLogin() {
-            const loginType = document.querySelector('input[name="loginType"]:checked').value;
-            const enteredUsername = usernameInput.value;
-            const enteredPassword = passwordInput.value;
-            let isValid = false;
-
-            if (loginType === 'store') {
-                if (enteredUsername === STORE_USERNAME && enteredPassword === STORE_PASSWORD) {
-                    isValid = true;
-                    passwordOverlay.style.display = 'none';
-                    mainContentStore.classList.remove('hidden'); // Show Retail content
-                }
-            } else if (loginType === 'surgical') {
-                 if (enteredUsername === SURGICAL_USERNAME && enteredPassword === SURGICAL_PASSWORD) {
-                    isValid = true;
-                    // Redirect to surgical page
-                    window.location.href = 'surgical.html'; // Nayi file ka naam
-                 }
-            }
-
-            if (!isValid) {
-                passwordError.classList.remove('hidden');
+            // Only check for Store credentials now
+            if (usernameInput.value === STORE_USERNAME && passwordInput.value === STORE_PASSWORD) {
+                passwordOverlay.style.display = 'none';
+                mainContent.classList.remove('hidden');
             } else {
-                 passwordError.classList.add('hidden');
+                passwordError.classList.remove('hidden');
             }
         }
 
@@ -299,13 +272,11 @@
         usernameInput.addEventListener('keyup', (event) => { if (event.key === "Enter") passwordInput.focus(); });
 
         // --- RETAIL STORE APP LOGIC ---
-        // (Yeh code sirf tabhi kaam karega jab Store Login successful hoga)
-        
-        const SCRIPT_URL_STORE = 'https://script.google.com/macros/s/AKfycbzUPAGg3CCWlNW0qFS_mHOcTshodzODJ225OHXRmO2tNupkIAkBdpZUi_Y2EG9VrWu3qw/exec'; // Retail script URL
-        const UPI_ID_STORE = "mab.037325040420024@axisbank"; // Retail UPI ID
+        const SCRIPT_URL_STORE = 'https://script.google.com/macros/s/AKfycbzUPAGg3CCWlNW0qFS_mHOcTshodzODJ225OHXRmO2tNupkIAkBdpZUi_Y2EG9VrWu3qw/exec';
+        const UPI_ID_STORE = "mab.037325040420024@axisbank";
         const medicineListStore = [ "Crocin Advance", "Calpol 500mg", "Dolo 650mg", "Paracetamol 500mg", "Combiflam", "Sumo Tablet", "ORS Powder", "Electral Powder", "Digene Tablet", "Gelusil MPS", "Omez 20mg", "Pantop DSR", "Allegra 120mg", "Cetirizine 10mg", "Avil 25mg", "Benadryl Syrup", "Vicks Action 500", "Band-Aid", "Dettol", "Savlon", "Betadine Ointment", "Soframycin Skin Cream", "Moov Spray", "Volini Gel" ];
 
-        // DOM Elements (specific IDs used to avoid conflict if Surgical page loads this)
+        // DOM Elements
         const billDateInput = document.getElementById('billDate');
         const addItemBtn = document.getElementById('add-item-btn');
         const itemsTableBody = document.getElementById('items-table-body');
@@ -322,16 +293,16 @@
         const toast = document.getElementById('toast');
         const toastMessage = document.getElementById('toastMessage');
 
-        // Initial Setup for Store
+        // Initial Setup
         document.addEventListener('DOMContentLoaded', () => {
-             // Only run setup if the store content is visible (i.e., after store login)
-            if (!mainContentStore.classList.contains('hidden')) {
+             // Run setup only if login overlay is hidden
+            if (passwordOverlay.style.display === 'none') {
                 billDateInput.value = new Date().toISOString().split('T')[0];
                 addNewItemRow();
             }
         });
 
-        // Event Listeners for Store
+        // Event Listeners
         if(addItemBtn) addItemBtn.addEventListener('click', addNewItemRow);
         if(clearFormBtn) clearFormBtn.addEventListener('click', () => clearForm(true));
         if(saveBillBtn) saveBillBtn.addEventListener('click', saveData);
@@ -354,7 +325,7 @@
         });
         if(okModalBtn) okModalBtn.addEventListener('click', () => {
             toggleModal(dataModal, false);
-            clearForm(true); // Clear only if OK is clicked in the store context
+            clearForm(true);
         });
         if(generateQrBtn) generateQrBtn.addEventListener('click', () => toggleModal(qrModal, true));
         if(closeQrModalBtn) closeQrModalBtn.addEventListener('click', () => toggleModal(qrModal, false));
@@ -373,7 +344,7 @@
              }
         });
 
-        // App Functions for Store
+        // App Functions
         async function saveData() {
             saveBillBtn.disabled = true;
             saveBillBtn.textContent = 'Saving...';
@@ -435,7 +406,7 @@
         }
         
         function addNewItemRow() {
-             if (!itemsTableBody) return; // Add check
+             if (!itemsTableBody) return;
             const row = document.createElement('tr');
             row.className = 'border-b hover:bg-gray-50';
             row.innerHTML = `
@@ -458,7 +429,7 @@
                 document.getElementById('rx').checked = true;
             }
             document.getElementById('doctorsPrescriptionFile').value = '';
-            if (itemsTableBody) itemsTableBody.innerHTML = ''; // Add check
+            if (itemsTableBody) itemsTableBody.innerHTML = '';
             addNewItemRow();
         }
 
@@ -472,7 +443,7 @@
         }
 
         function showToast(message) {
-             if(!toast || !toastMessage) return; // Add check
+             if(!toast || !toastMessage) return;
             toastMessage.textContent = message;
             toast.style.opacity = 1;
             toast.style.transform = 'translateY(0)';
@@ -483,7 +454,7 @@
         }
 
         function toggleModal(modal, show) {
-            if (!modal) return; // Add check
+            if (!modal) return;
             if (show) {
                 modal.style.display = 'flex';
             } else {
