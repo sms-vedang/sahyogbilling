@@ -14,24 +14,23 @@
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Sahyog Billing - Free & Simple Billing for Medical Shops</title>
-    <meta name="description" content="A free, simple, and easy-to-use billing data entry page for medical shops and pharmacies. Save bill data directly to a Google Sheet. No installation required.">
-    <meta name="keywords" content="free billing software, medical shop billing, pharmacy data entry, sahyog medical, simple billing tool, google sheets billing, sahyog manasa, sahyog medical, sahyog medical store">
-
+    <title>Sahyog Billing - Login</title>
+    <meta name="description" content="Login page for Sahyog Medical billing applications (Retail and Surgical).">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Inlined CSS for Offline and Faster Loading */
+        /* Inlined CSS */
         :root {
             --teal-50: #f0fdfa; --teal-100: #ccfbf1; --teal-500: #14b8a6; --teal-600: #0d9488; --teal-700: #0f766e;
             --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb; --gray-300: #d1d5db; --gray-500: #6b7280; --gray-600: #4b5563; --gray-800: #1f2937;
             --indigo-500: #6366f1; --indigo-600: #4f46e5; --blue-600: #2563eb; --blue-700: #1d4ed8; --red-500: #ef4444; --green-500: #22c55e;
             --white: #ffffff; --black: #000000;
         }
-        html { line-height: 1.5; -webkit-text-size-adjust: 100%; font-family: 'Inter', sans-serif; }
+        html { line-height: 1.5; font-family: 'Inter', sans-serif; }
         body { margin: 0; background-color: #f3f4f6; color: #1f2937; }
-        .hidden { display: none; }
+        .hidden { display: none !important; } /* Use !important to override potential conflicts */
         #password-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(31, 41, 55, 0.9); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 100; padding: 1rem;
@@ -46,21 +45,18 @@
         }
         #password-submit {
             width: 100%; padding: 0.75rem; background-color: #14b8a6; color: white;
-            border: none; border-radius: 0.375rem; font-weight: 600; cursor: pointer;
+            border: none; border-radius: 0.375rem; font-weight: 600; cursor: pointer; margin-top: 1rem;
         }
         #password-error {
             color: #ef4444; margin-top: 0.5rem; font-size: 0.875rem;
         }
+        .login-type-label { display: block; text-align: left; font-size: 0.875rem; font-weight: 500; color: #4b5563; margin-bottom: 0.5rem; }
+        .login-type-options { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .login-type-options label { font-size: 0.875rem; }
         .footer-login {
-            position: absolute;
-            bottom: 2rem;
-            color: white;
-            text-align: center;
+            position: absolute; bottom: 2rem; color: white; text-align: center; font-size: 0.875rem;
         }
-        .footer-login a {
-            color: var(--teal-500);
-            text-decoration: none;
-        }
+        .footer-login a { color: var(--teal-500); text-decoration: none; }
         *, ::before, ::after { box-sizing: border-box; border-width: 0; border-style: solid; border-color: #e5e7eb; }
         .container { width: 100%; margin-right: auto; margin-left: auto; padding-right: 1rem; padding-left: 1rem; }
         @media (min-width: 768px) { .container { max-width: 768px; padding-right: 2rem; padding-left: 2rem;} }
@@ -96,12 +92,12 @@
         @media (min-width: 640px) { .sm\:flex-row { flex-direction: row; } }
         .items-center { align-items: center; } .justify-end { justify-content: flex-end; } .justify-between { justify-content: space-between; } .justify-center { justify-content: center; }
         .flex-wrap { flex-wrap: wrap; } .pt-6 { padding-top: 1.5rem; } .fixed { position: fixed; } .inset-0 { top: 0; right: 0; bottom: 0; left: 0; } .z-50 { z-index: 50; }
-        .transform { transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1); } .scale-95 { transform: scale(0.95); }
         .text-xl { font-size: 1.25rem; line-height: 1.75rem; } .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
         .hover\:text-gray-800:hover { color: var(--gray-800); } .min-h-\[256px\] { min-height: 256px; } .bottom-5 { bottom: 1.25rem; } .right-5 { right: 1.25rem; } .opacity-0 { opacity: 0; }
         .text-red-500 { color: var(--red-500); } .hover\:text-red-700:hover { color: #b91c1c; } .relative { position: relative; } .bg-transparent { background-color: transparent; } .border-b-2 { border-bottom-width: 2px; } .focus\:outline-none:focus { outline: 2px solid transparent; outline-offset: 2px; }
         .w-24 { width: 6rem; } .text-xs { font-size: 0.75rem; line-height: 1rem; }
         .file\:mr-4::file-selector-button { margin-right: 1rem; } .file\:py-2::file-selector-button { padding-top: 0.5rem; padding-bottom: 0.5rem; } .file\:px-4::file-selector-button { padding-left: 1rem; padding-right: 1rem; } .file\:rounded-md::file-selector-button { border-radius: 0.375rem; } .file\:border-0::file-selector-button { border-width: 0; } .file\:text-sm::file-selector-button { font-size: 0.875rem; line-height: 1.25rem; } .file\:font-semibold::file-selector-button { font-weight: 600; } .file\:bg-teal-50::file-selector-button { background-color: var(--teal-50); } .file\:text-teal-700::file-selector-button { color: var(--teal-700); } .hover\:file\:bg-teal-100:hover::file-selector-button { background-color: var(--teal-100); }
+        .modal { transition: opacity 0.3s ease; } .modal-content { transition: transform 0.3s ease; } #toast { transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; }
         .autocomplete-suggestions { position: absolute; border: 1px solid #ddd; background-color: white; z-index: 1000; max-height: 150px; overflow-y: auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .autocomplete-suggestion { padding: 8px; cursor: pointer; } .autocomplete-suggestion:hover { background-color: #f0f0f0; }
         @media (min-width: 768px) { .md\:col-span-2 { grid-column: span 2 / span 2; } }
@@ -112,24 +108,41 @@
     <div id="password-overlay">
         <div id="password-box">
             <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Login to Access Billing</h2>
-            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1.5rem;">This is a private billing tool.</p>
+            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1rem;">Select your login type:</p>
+            <!-- Login Type Selection -->
+            <div class="login-type-options">
+                <div class="flex items-center">
+                    <input id="loginStore" name="loginType" type="radio" value="store" checked class="h-4 w-4 border-gray-300 text-teal-600 focus:ring-teal-500">
+                    <label for="loginStore" class="ml-2 block text-sm text-gray-900">Retail Store</label>
+                </div>
+                <div class="flex items-center">
+                    <input id="loginSurgical" name="loginType" type="radio" value="surgical" class="h-4 w-4 border-gray-300 text-teal-600 focus:ring-teal-500">
+                    <label for="loginSurgical" class="ml-2 block text-sm text-gray-900">Surgical/Wholesale</label>
+                </div>
+            </div>
             <input type="text" id="username-input" class="login-input" placeholder="Enter Username">
             <input type="password" id="password-input" class="login-input" placeholder="Enter Password">
             <button id="password-submit">Login</button>
             <p id="password-error" class="hidden">Wrong Username or Password.</p>
         </div>
+        <footer class="footer-login">
+            <p>Want a similar billing solution for your shop?</p>
+            <p>Contact us at: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+        </footer>
     </div>
 
-    <div id="main-content" class="hidden">
+    <!-- Retail Store Content (Initially hidden) -->
+    <div id="main-content-store" class="hidden">
         <div class="container mx-auto p-4 md:p-8 max-w-5xl">
             <header class="bg-white rounded-lg shadow-md p-6 mb-8 text-center">
-                <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-teal-600">Free Medical Shop Billing Tool</h1>
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-teal-600">Retail Store Billing Tool</h1>
                 <p class="text-gray-500 mt-1">Powered by Sahyog Medical</p>
             </header>
 
             <main class="bg-white rounded-lg shadow-md p-4 sm:p-6 md:p-8">
                 <h2 class="text-xl font-bold text-gray-800 mb-6">Enter New Bill Details</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <!-- Retail Form Fields -->
                     <div>
                         <label for="customerName" class="block text-sm font-medium text-gray-600 mb-1">Customer Name</label>
                         <input type="text" id="customerName" class="w-full bg-gray-50 border-gray-300 rounded-md shadow-sm p-2" placeholder="Walk-in Customer">
@@ -239,25 +252,45 @@
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script>
         // ====================================================================================
-        // ===> ZAROORI: Apna Username aur Password Yahan Set Karein!
+        // ===> ZAROORI: Dono ke liye Username aur Password Yahan Set Karein!
         // ====================================================================================
-        const MY_USERNAME = "sahyog";
-        const MY_PASSWORD = "sahyog123";
+        const STORE_USERNAME = "sahyog";
+        const STORE_PASSWORD = "sahyog123";
+        const SURGICAL_USERNAME = "surgical"; // Naya username
+        const SURGICAL_PASSWORD = "surgical123"; // Naya password
 
         // Login Logic
         const passwordOverlay = document.getElementById('password-overlay');
-        const mainContent = document.getElementById('main-content');
+        const mainContentStore = document.getElementById('main-content-store');
         const usernameInput = document.getElementById('username-input');
         const passwordInput = document.getElementById('password-input');
         const passwordSubmit = document.getElementById('password-submit');
         const passwordError = document.getElementById('password-error');
 
         function checkLogin() {
-            if (usernameInput.value === MY_USERNAME && passwordInput.value === MY_PASSWORD) {
-                passwordOverlay.style.display = 'none';
-                mainContent.classList.remove('hidden');
-            } else {
+            const loginType = document.querySelector('input[name="loginType"]:checked').value;
+            const enteredUsername = usernameInput.value;
+            const enteredPassword = passwordInput.value;
+            let isValid = false;
+
+            if (loginType === 'store') {
+                if (enteredUsername === STORE_USERNAME && enteredPassword === STORE_PASSWORD) {
+                    isValid = true;
+                    passwordOverlay.style.display = 'none';
+                    mainContentStore.classList.remove('hidden'); // Show Retail content
+                }
+            } else if (loginType === 'surgical') {
+                 if (enteredUsername === SURGICAL_USERNAME && enteredPassword === SURGICAL_PASSWORD) {
+                    isValid = true;
+                    // Redirect to surgical page
+                    window.location.href = 'surgical.html'; // Nayi file ka naam
+                 }
+            }
+
+            if (!isValid) {
                 passwordError.classList.remove('hidden');
+            } else {
+                 passwordError.classList.add('hidden');
             }
         }
 
@@ -265,12 +298,14 @@
         passwordInput.addEventListener('keyup', (event) => { if (event.key === "Enter") checkLogin(); });
         usernameInput.addEventListener('keyup', (event) => { if (event.key === "Enter") passwordInput.focus(); });
 
-        // App Constants
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzUPAGg3CCWlNW0qFS_mHOcTshodzODJ225OHXRmO2tNupkIAkBdpZUi_Y2EG9VrWu3qw/exec';
-        const UPI_ID = "mab.037325040420024@axisbank";
-        const medicineList = [ "Crocin Advance", "Calpol 500mg", "Dolo 650mg", "Paracetamol 500mg", "Combiflam", "Sumo Tablet", "ORS Powder", "Electral Powder", "Digene Tablet", "Gelusil MPS", "Omez 20mg", "Pantop DSR", "Allegra 120mg", "Cetirizine 10mg", "Avil 25mg", "Benadryl Syrup", "Vicks Action 500", "Band-Aid", "Dettol", "Savlon", "Betadine Ointment", "Soframycin Skin Cream", "Moov Spray", "Volini Gel" ];
+        // --- RETAIL STORE APP LOGIC ---
+        // (Yeh code sirf tabhi kaam karega jab Store Login successful hoga)
+        
+        const SCRIPT_URL_STORE = 'https://script.google.com/macros/s/AKfycbzUPAGg3CCWlNW0qFS_mHOcTshodzODJ225OHXRmO2tNupkIAkBdpZUi_Y2EG9VrWu3qw/exec'; // Retail script URL
+        const UPI_ID_STORE = "mab.037325040420024@axisbank"; // Retail UPI ID
+        const medicineListStore = [ "Crocin Advance", "Calpol 500mg", "Dolo 650mg", "Paracetamol 500mg", "Combiflam", "Sumo Tablet", "ORS Powder", "Electral Powder", "Digene Tablet", "Gelusil MPS", "Omez 20mg", "Pantop DSR", "Allegra 120mg", "Cetirizine 10mg", "Avil 25mg", "Benadryl Syrup", "Vicks Action 500", "Band-Aid", "Dettol", "Savlon", "Betadine Ointment", "Soframycin Skin Cream", "Moov Spray", "Volini Gel" ];
 
-        // All DOM elements are defined here
+        // DOM Elements (specific IDs used to avoid conflict if Surgical page loads this)
         const billDateInput = document.getElementById('billDate');
         const addItemBtn = document.getElementById('add-item-btn');
         const itemsTableBody = document.getElementById('items-table-body');
@@ -287,50 +322,58 @@
         const toast = document.getElementById('toast');
         const toastMessage = document.getElementById('toastMessage');
 
-        // Initial Setup
+        // Initial Setup for Store
         document.addEventListener('DOMContentLoaded', () => {
-            billDateInput.value = new Date().toISOString().split('T')[0];
-            addNewItemRow();
-        });
-
-        // Event Listeners
-        addItemBtn.addEventListener('click', addNewItemRow);
-        clearFormBtn.addEventListener('click', () => clearForm(true));
-        saveBillBtn.addEventListener('click', saveData);
-        itemsTableBody.addEventListener('keyup', (e) => {
-             if (e.target.classList.contains('medicine-input')) showAutocomplete(e.target);
-        });
-        itemsTableBody.addEventListener('click', (e) => {
-            const removeItemBtn = e.target.closest('.remove-item-btn');
-            if (removeItemBtn && itemsTableBody.querySelectorAll('tr').length > 1) {
-                removeItemBtn.closest('tr').remove();
+             // Only run setup if the store content is visible (i.e., after store login)
+            if (!mainContentStore.classList.contains('hidden')) {
+                billDateInput.value = new Date().toISOString().split('T')[0];
+                addNewItemRow();
             }
         });
+
+        // Event Listeners for Store
+        if(addItemBtn) addItemBtn.addEventListener('click', addNewItemRow);
+        if(clearFormBtn) clearFormBtn.addEventListener('click', () => clearForm(true));
+        if(saveBillBtn) saveBillBtn.addEventListener('click', saveData);
+        if(itemsTableBody) {
+            itemsTableBody.addEventListener('keyup', (e) => {
+                 if (e.target.classList.contains('medicine-input')) showAutocomplete(e.target);
+            });
+            itemsTableBody.addEventListener('click', (e) => {
+                const removeItemBtn = e.target.closest('.remove-item-btn');
+                if (removeItemBtn && itemsTableBody.querySelectorAll('tr').length > 1) {
+                    removeItemBtn.closest('tr').remove();
+                }
+            });
+        }
         document.addEventListener('click', (e) => {
              if (!e.target.classList.contains('medicine-input')) {
                 const suggestions = document.querySelector('.autocomplete-suggestions');
                 if(suggestions) suggestions.remove();
             }
         });
-        okModalBtn.addEventListener('click', () => toggleModal(dataModal, false));
-        generateQrBtn.addEventListener('click', () => toggleModal(qrModal, true));
-        closeQrModalBtn.addEventListener('click', () => toggleModal(qrModal, false));
-        createQrBtn.addEventListener('click', () => {
+        if(okModalBtn) okModalBtn.addEventListener('click', () => {
+            toggleModal(dataModal, false);
+            clearForm(true); // Clear only if OK is clicked in the store context
+        });
+        if(generateQrBtn) generateQrBtn.addEventListener('click', () => toggleModal(qrModal, true));
+        if(closeQrModalBtn) closeQrModalBtn.addEventListener('click', () => toggleModal(qrModal, false));
+        if(createQrBtn) createQrBtn.addEventListener('click', () => {
              const amount = amountInput.value;
-             if (UPI_ID === "" || UPI_ID.includes("your-upi-id")) {
-                 qrcodeContainer.innerHTML = `<p class="text-red-500">Please set your UPI ID in the HTML file first.</p>`;
+             if (UPI_ID_STORE === "" || UPI_ID_STORE.includes("your-upi-id")) {
+                 qrcodeContainer.innerHTML = `<p class="text-red-500">Please set Store UPI ID first.</p>`;
                  return;
              }
              if(amount && amount > 0){
                  qrcodeContainer.innerHTML = '';
-                 const upiUrl = `upi://pay?pa=${UPI_ID}&pn=Sahyog%20Medical&am=${amount}&cu=INR`;
+                 const upiUrl = `upi://pay?pa=${UPI_ID_STORE}&pn=Sahyog%20Medical&am=${amount}&cu=INR`;
                  new QRCode(qrcodeContainer, { text: upiUrl, width: 256, height: 256 });
              } else {
                  qrcodeContainer.innerHTML = `<p class="text-gray-500">Please enter a valid amount.</p>`;
              }
         });
 
-        // App Functions
+        // App Functions for Store
         async function saveData() {
             saveBillBtn.disabled = true;
             saveBillBtn.textContent = 'Saving...';
@@ -371,7 +414,7 @@
                 }
                 if (billData.items.length === 0) throw new Error("Please add at least one medicine to save.");
                 
-                const response = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(billData) });
+                const response = await fetch(SCRIPT_URL_STORE, { method: 'POST', body: JSON.stringify(billData) });
                 
                 const resultText = await response.text();
                 try {
@@ -392,6 +435,7 @@
         }
         
         function addNewItemRow() {
+             if (!itemsTableBody) return; // Add check
             const row = document.createElement('tr');
             row.className = 'border-b hover:bg-gray-50';
             row.innerHTML = `
@@ -414,7 +458,7 @@
                 document.getElementById('rx').checked = true;
             }
             document.getElementById('doctorsPrescriptionFile').value = '';
-            itemsTableBody.innerHTML = '';
+            if (itemsTableBody) itemsTableBody.innerHTML = ''; // Add check
             addNewItemRow();
         }
 
@@ -428,6 +472,7 @@
         }
 
         function showToast(message) {
+             if(!toast || !toastMessage) return; // Add check
             toastMessage.textContent = message;
             toast.style.opacity = 1;
             toast.style.transform = 'translateY(0)';
@@ -438,6 +483,7 @@
         }
 
         function toggleModal(modal, show) {
+            if (!modal) return; // Add check
             if (show) {
                 modal.style.display = 'flex';
             } else {
@@ -468,7 +514,7 @@
         }
 
         function filterMedicines(query) {
-            return medicineList.filter(med => med.toLowerCase().includes(query)).slice(0, 5);
+            return medicineListStore.filter(med => med.toLowerCase().includes(query)).slice(0, 5);
         }
     </script>
 </body>
